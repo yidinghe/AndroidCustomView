@@ -1,10 +1,7 @@
 package com.candibell.androidcustomview.day03
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.RectF
+import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import com.candibell.androidcustomview.R
@@ -25,9 +22,13 @@ class QQStepView : View {
     private var mOuterColor = Color.RED
     private var mInnerColor = Color.BLUE
     private var mBoarderWidth = 20
-    private var mStepTextSize = 0
+    private var mStepTextSize = 40
     private var mStepTextColor = 0
+    private var mStepMax = 100
+    private var mCurrentStep = 50
     private var mOuterPaint: Paint? = null
+    private var mInnerPaint: Paint? = null
+    private var mTextPaint: Paint? = null
 
     constructor(context: Context?) : super(context) {}
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
@@ -46,6 +47,18 @@ class QQStepView : View {
         mOuterPaint!!.color = mOuterColor
         mOuterPaint!!.strokeCap = Paint.Cap.ROUND
         mOuterPaint!!.style = Paint.Style.STROKE
+
+        mInnerPaint = Paint()
+        mInnerPaint!!.isAntiAlias = true
+        mInnerPaint!!.strokeWidth = mBoarderWidth.toFloat()
+        mInnerPaint!!.color = mStepTextColor
+        mInnerPaint!!.strokeCap = Paint.Cap.ROUND
+        mInnerPaint!!.style = Paint.Style.STROKE
+
+        mTextPaint = Paint()
+        mInnerPaint!!.isAntiAlias = true
+        mTextPaint!!.color = mStepTextColor
+        mTextPaint!!.textSize = mStepTextSize.toFloat()
     }
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
@@ -93,6 +106,21 @@ class QQStepView : View {
             (width - mBoarderWidth / 2).toFloat(),
             (height - mBoarderWidth / 2).toFloat()
         )
+
+        if (mStepMax == 0)
+            return
+
         canvas?.drawArc(rectF, 135f, 270f, false, mOuterPaint!!)
+        val sweepAngle = mCurrentStep.toFloat() / mStepMax.toFloat()
+        canvas?.drawArc(rectF, 135f, sweepAngle * 270, false, mInnerPaint!!)
+
+        val stepText = "$mCurrentStep"
+        val textBounds = Rect()
+        mTextPaint!!.getTextBounds(stepText, 0, stepText.length, textBounds)
+        val dx = width / 2 - textBounds.width() / 2
+        val fontMetrics = mTextPaint!!.fontMetricsInt
+        val dy = (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom
+        val baseLine = height / 2 + dy
+        canvas?.drawText(stepText, dx.toFloat(), baseLine.toFloat(), mTextPaint!!)
     }
 }

@@ -15,6 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:outerColor="@color/design_default_color_primary" />
+        app:outerColor="@color/design_default_color_primary"
+        app:stepTextColor="@color/design_dark_default_color_background" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
