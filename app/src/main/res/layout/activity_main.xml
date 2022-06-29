@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <com.candibell.androidcustomview.day03.QQStepView
+        android:id="@+id/mQQStepView"
         android:layout_width="300dp"
         android:layout_height="300dp"
         app:boardWidth="20dp"
@@ -16,6 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:outerColor="@color/design_default_color_primary"
-        app:stepTextColor="@color/design_dark_default_color_background" />
+        app:stepTextColor="@color/design_default_color_secondary"
+        app:stepTextSize="30sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

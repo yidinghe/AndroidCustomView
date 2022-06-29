@@ -15,7 +15,7 @@ class QQStepView : View {
     * 4. 在自定义view中获取自定义属性
     * 5. onMeasure()
     * 6. 画
-    * 7. 其他
+    * 7. 其他 (动画?)
     *
     * */
 
@@ -122,5 +122,14 @@ class QQStepView : View {
         val dy = (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom
         val baseLine = height / 2 + dy
         canvas?.drawText(stepText, dx.toFloat(), baseLine.toFloat(), mTextPaint!!)
+    }
+
+    public fun setStepMax(stepMax: Int) {
+        this.mStepMax = stepMax
+    }
+
+    public fun setCurrentStep(currentStep: Int) {
+        this.mCurrentStep = currentStep
+        invalidate()
     }
 }
