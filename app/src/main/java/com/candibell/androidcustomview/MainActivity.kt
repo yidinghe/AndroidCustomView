@@ -1,28 +1,26 @@
 package com.candibell.androidcustomview
 
-import android.animation.ObjectAnimator
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.view.animation.DecelerateInterpolator
-import com.candibell.androidcustomview.day03.QQStepView
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import com.candibell.androidcustomview.day03.Main03Activity
+import com.candibell.androidcustomview.day04.Main04Activity
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val mQQStepView = findViewById<QQStepView>(R.id.mQQStepView)
-        mQQStepView.setStepMax(4000)
+        findViewById<Button>(R.id.mQQStepViewBtn).setOnClickListener {
+            val intent = Intent(this, Main03Activity::class.java)
+            startActivity(intent)
+        }
 
-        val valueAnimator = ObjectAnimator.ofFloat(0f, 3000f)
-        valueAnimator.interpolator = object : DecelerateInterpolator() {
-            
+        findViewById<Button>(R.id.mColorTrackViewBtn).setOnClickListener {
+            val intent = Intent(this, Main04Activity::class.java)
+            startActivity(intent)
         }
-        valueAnimator.duration = 1000
-        valueAnimator.addUpdateListener { animator ->
-            val currentStep = animator.animatedValue as Float
-            mQQStepView.setCurrentStep(currentStep.toInt())
-        }
-        valueAnimator.start()
     }
 }
