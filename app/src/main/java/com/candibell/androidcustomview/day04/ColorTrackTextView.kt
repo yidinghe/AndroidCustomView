@@ -13,6 +13,7 @@ class ColorTrackTextView : AppCompatTextView {
     private var mOriginPaint: Paint? = null
     private var mChangePaint: Paint? = null
     private var mCurrentProgress = 0.5f
+    private var mDirection = ColorTrackDirection.LEFT_TO_RIGHT
 
     constructor(context: Context?) : super(context!!) {}
     constructor(context: Context?, attrs: AttributeSet?) : super(
@@ -41,11 +42,18 @@ class ColorTrackTextView : AppCompatTextView {
 
         val middle = mCurrentProgress * width
 
-        // 绘制不变色的
-        drawText(canvas!!, mOriginPaint!!, 0, middle.toInt())
 
-        // 绘制变色的
-        drawText(canvas!!, mChangePaint!!, middle.toInt(), width)
+        if (mDirection == ColorTrackDirection.LEFT_TO_RIGHT) {
+            // 绘制不变色的
+            drawText(canvas!!, mOriginPaint!!, 0, middle.toInt())
+            // 绘制变色的
+            drawText(canvas!!, mChangePaint!!, middle.toInt(), width)
+        } else {
+            // 绘制不变色的
+            drawText(canvas!!, mChangePaint!!, width - middle.toInt(), width)
+            // 绘制变色的
+            drawText(canvas!!, mOriginPaint!!, 0, width - middle.toInt())
+        }
     }
 
     private fun drawText(canvas: Canvas, paint: Paint, start: Int, end: Int) {
@@ -71,5 +79,14 @@ class ColorTrackTextView : AppCompatTextView {
         paint.isDither = true
         paint.textSize = textSize
         return paint
+    }
+
+    fun setDirection(direction: ColorTrackDirection) {
+        mDirection = direction
+    }
+
+    fun setCurrentProgress(currentProcess: Float) {
+        mCurrentProgress = currentProcess
+        invalidate()
     }
 }

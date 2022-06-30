@@ -6,17 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".day03.Main03Activity">
 
+    <Button
+        android:id="@+id/mLeftToRightBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="left to right"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/mRightToLeftBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="right to left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mLeftToRightBtn" />
+
     <com.candibell.androidcustomview.day04.ColorTrackTextView
-        android:id="@+id/mQQStepView"
+        android:id="@+id/mColorTrackTextView"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:text="Hello World!"
         android:textSize="30sp"
-        app:originColor="@color/black"
         app:changeColor="@color/design_default_color_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:originColor="@color/black" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
