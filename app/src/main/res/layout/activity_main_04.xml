@@ -6,18 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".day03.Main03Activity">
 
-    <com.candibell.androidcustomview.day03.QQStepView
+    <com.candibell.androidcustomview.day04.ColorTrackTextView
         android:id="@+id/mQQStepView"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        app:boardWidth="20dp"
-        app:innerColor="@color/design_default_color_on_secondary"
+        android:text="Hello World!"
+        android:textSize="30sp"
+        app:originColor="@color/black"
+        app:changeColor="@color/design_default_color_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:outerColor="@color/design_default_color_primary"
-        app:stepTextColor="@color/design_default_color_secondary"
-        app:stepTextSize="30sp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
