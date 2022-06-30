@@ -8,6 +8,9 @@ import com.candibell.androidcustomview.R
 
 class QQStepView : View {
 
+    // UI的绘制流程, performTraversals(), 非常重要, 测量, 摆放, 绘制.
+    // performMeasure(), performLayout(), performDraw()
+
     /*
     * 1. 分析效果
     * 2. 确定自定义属性, 编写attrs.xml
