@@ -45,9 +45,9 @@ class ColorTrackTextView : AppCompatTextView {
 
         if (mDirection == ColorTrackDirection.LEFT_TO_RIGHT) {
             // 绘制不变色的
-            drawText(canvas!!, mOriginPaint!!, 0, middle.toInt())
+            drawText(canvas!!, mChangePaint!!, 0, middle.toInt())
             // 绘制变色的
-            drawText(canvas!!, mChangePaint!!, middle.toInt(), width)
+            drawText(canvas!!, mOriginPaint!!, middle.toInt(), width)
         } else {
             // 绘制不变色的
             drawText(canvas!!, mChangePaint!!, width - middle.toInt(), width)
