@@ -24,12 +24,13 @@
         </activity>
 
         <activity
+            android:name=".day03.Main03Activity"
+            android:exported="true" />
+        <activity
             android:name=".day04.Main04Activity"
             android:exported="true" />
-
-
         <activity
-            android:name=".day03.Main03Activity"
+            android:name=".day04.ViewPagerActivity"
             android:exported="true" />
     </application>
 

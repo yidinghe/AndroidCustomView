@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
+import android.util.Log
 import androidx.appcompat.widget.AppCompatTextView
 import com.candibell.androidcustomview.R
 
@@ -15,10 +16,15 @@ class ColorTrackTextView : AppCompatTextView {
     private var mCurrentProgress = 0.5f
     private var mDirection = ColorTrackDirection.LEFT_TO_RIGHT
 
-    constructor(context: Context?) : super(context!!) {}
+    constructor(context: Context?) : super(context!!) {
+        Log.d("Paint", "init")
+        mOriginPaint = constructPaint(textColors.defaultColor)
+        mChangePaint = constructPaint(textColors.defaultColor)
+    }
     constructor(context: Context?, attrs: AttributeSet?) : super(
         context!!, attrs
     ) {
+        Log.d("Paint", "init2")
         val array = context!!.obtainStyledAttributes(attrs, R.styleable.ColorTrackTextView)
         val originColor =
             array.getColor(R.styleable.ColorTrackTextView_originColor, textColors.defaultColor)
@@ -32,7 +38,7 @@ class ColorTrackTextView : AppCompatTextView {
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context!!, attrs, defStyleAttr
     ) {
-
+        Log.d("Paint", "init3")
     }
 
     // 一个文字两种颜色
@@ -88,5 +94,13 @@ class ColorTrackTextView : AppCompatTextView {
     fun setCurrentProgress(currentProcess: Float) {
         mCurrentProgress = currentProcess
         invalidate()
+    }
+
+    fun setChangeColor(changeColor: Int) {
+        mChangePaint?.color = changeColor
+    }
+
+    fun setOriginColor(originColor: Int) {
+        mOriginPaint?.color = originColor
     }
 }
