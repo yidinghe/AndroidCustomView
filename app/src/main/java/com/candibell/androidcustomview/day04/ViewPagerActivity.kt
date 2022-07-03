@@ -42,6 +42,35 @@ class ViewPagerActivity : AppCompatActivity() {
             }
 
         }
+
+        mViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+                // position 代表当前位置
+                // positionOffSet 代表滚动的百分比 0 - 1
+                val left = mIndicators.get(position)
+                left.setDirection(ColorTrackDirection.RIGHT_TO_LEFT)
+                left.setCurrentProgress(1 - positionOffset)
+
+                if (position == mIndicators.size - 1) {
+                    return
+                }
+
+                val right = mIndicators.get(position + 1)
+                right.setDirection(ColorTrackDirection.LEFT_TO_RIGHT)
+                right.setCurrentProgress(positionOffset)
+            }
+
+            override fun onPageSelected(position: Int) {
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+        })
     }
 
     private fun initIndicator() {

@@ -13,7 +13,7 @@ class ColorTrackTextView : AppCompatTextView {
 
     private var mOriginPaint: Paint? = null
     private var mChangePaint: Paint? = null
-    private var mCurrentProgress = 0.5f
+    private var mCurrentProgress = 0f
     private var mDirection = ColorTrackDirection.LEFT_TO_RIGHT
 
     constructor(context: Context?) : super(context!!) {
