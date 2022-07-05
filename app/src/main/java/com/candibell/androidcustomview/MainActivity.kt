@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.candibell.androidcustomview.day03.Main03Activity
 import com.candibell.androidcustomview.day04.Main04Activity
 import com.candibell.androidcustomview.day04.ViewPagerActivity
+import com.candibell.androidcustomview.day05.Main05Activity
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +27,11 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.mViewPagerColorTrackViewBtn).setOnClickListener {
             val intent = Intent(this, ViewPagerActivity::class.java)
+            startActivity(intent)
+        }
+
+        findViewById<Button>(R.id.mProgressBarViewBtn).setOnClickListener {
+            val intent = Intent(this, Main05Activity::class.java)
             startActivity(intent)
         }
     }
