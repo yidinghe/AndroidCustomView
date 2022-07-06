@@ -56,7 +56,7 @@ class ProgressBar @JvmOverloads constructor(
             (height - mRoundWidth / 2).toFloat()
         )
         canvas.drawArc(rect, 0f, percent * 360, false, mOuterPaint)
-        val text: String = "${percent * 100}%"
+        val text: String = "${(percent * 100).toInt()}%"
         val textBounds = Rect()
         mTextPaint.getTextBounds(text, 0, text.length, textBounds)
         val x = width / 2 - textBounds.width() / 2
