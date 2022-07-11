@@ -35,6 +35,9 @@
         <activity
             android:name=".day04.ViewPagerActivity"
             android:exported="true" />
+        <activity
+            android:name=".day06.Main06Activity"
+            android:exported="true" />
     </application>
 
 </manifest>
