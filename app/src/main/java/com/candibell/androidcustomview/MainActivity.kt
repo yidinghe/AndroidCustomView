@@ -9,6 +9,7 @@ import com.candibell.androidcustomview.day04.Main04Activity
 import com.candibell.androidcustomview.day04.ViewPagerActivity
 import com.candibell.androidcustomview.day05.Main05Activity
 import com.candibell.androidcustomview.day06.Main06Activity
+import com.candibell.androidcustomview.day07.Main07Activity
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,6 +39,11 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.mRatingViewBtn).setOnClickListener {
             val intent = Intent(this, Main06Activity::class.java)
+            startActivity(intent)
+        }
+
+        findViewById<Button>(R.id.mLetterSideBarBtn).setOnClickListener {
+            val intent = Intent(this, Main07Activity::class.java)
             startActivity(intent)
         }
     }

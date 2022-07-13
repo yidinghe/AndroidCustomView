@@ -38,6 +38,9 @@
         <activity
             android:name=".day06.Main06Activity"
             android:exported="true" />
+        <activity
+            android:name=".day07.Main07Activity"
+            android:exported="true" />
     </application>
 
 </manifest>
