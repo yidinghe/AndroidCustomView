@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -20,6 +21,7 @@ public class LetterSideBar extends View {
 
     private String[] letters = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q",
             "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#"};
+    private String mCurrentTouchLetter;
 
     public LetterSideBar(Context context) {
         this(context, null);
@@ -77,7 +79,39 @@ public class LetterSideBar extends View {
 
             int textWidth = (int) mPaint.measureText(letters[i]);
             int x = getWidth() / 2 - textWidth / 2;
-            canvas.drawText(letters[i], x, baseLineY, mPaint);
+
+            // 当前字母要高亮
+            if (letters[i].equals(mCurrentTouchLetter)) {
+                mPaint.setColor(Color.RED);
+                canvas.drawText(letters[i], x, baseLineY, mPaint);
+            } else {
+                mPaint.setColor(textColor);
+                canvas.drawText(letters[i], x, baseLineY, mPaint);
+            }
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int itemHeight = (getHeight() - getPaddingTop() - getPaddingBottom()) / letters.length;
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_MOVE:
+                // 计算出当前触摸字母, 获取当前位置
+                float currentMoveY = event.getY();
+                // currentMoveY / 字母高度 -> 位置. 通过位置获取字母
+                int currentPosition = (int) (currentMoveY / itemHeight);
+                if (currentPosition < 0) {
+                    currentPosition = 0;
+                }
+                if (currentPosition > letters.length - 1) {
+                    currentPosition = letters.length - 1;
+                }
+                mCurrentTouchLetter = letters[currentPosition];
+                invalidate();
+                break;
+        }
+
+        return true;
     }
 }
