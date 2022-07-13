@@ -2,6 +2,7 @@ package com.candibell.androidcustomview.day07;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
@@ -16,6 +17,9 @@ public class LetterSideBar extends View {
     private Paint mPaint;
     private int textColor = Color.RED;
     private float textSize = 15f;
+
+    private String[] letters = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q",
+            "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
 
     public LetterSideBar(Context context) {
         this(context, null);
@@ -55,5 +59,22 @@ public class LetterSideBar extends View {
         int height = MeasureSpec.getSize(heightMeasureSpec);
 
         setMeasuredDimension(width, height);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        int x = getPaddingLeft();
+        int itemHeight = (getHeight() - getPaddingTop() - getPaddingBottom()) / letters.length;
+
+        for (int i = 0; i < letters.length; i++) {
+            // 知道每个字幕的中心位置. 1 字母的高度一半. 2 字母高度一半 + 前面字符的高度
+            int letterCenterY = i * itemHeight + itemHeight / 2 + getPaddingTop();
+            // 基线, 基于中心位置
+            Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
+            int dy = (int) ((fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom);
+            int baseLineY = letterCenterY + dy;
+            canvas.drawText(letters[i], x, baseLineY, mPaint);
+        }
     }
 }
