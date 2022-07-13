@@ -55,6 +55,11 @@ class RatingBar @JvmOverloads constructor(
                 if (currentGrade > mGradeNumber) {
                     currentGrade = mGradeNumber
                 }
+
+                if (currentGrade == mCurrentGrade) {
+                    return true;
+                }
+
                 mCurrentGrade = currentGrade
                 invalidate() //尽量减少onDraw的调用.
             }
