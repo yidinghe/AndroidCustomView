@@ -19,7 +19,7 @@ public class LetterSideBar extends View {
     private float textSize = 15f;
 
     private String[] letters = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q",
-            "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+            "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#"};
 
     public LetterSideBar(Context context) {
         this(context, null);
@@ -64,7 +64,7 @@ public class LetterSideBar extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int x = getPaddingLeft();
+        // 画26个字母, x绘制在最中间 = 宽度/2 - 文字/2
         int itemHeight = (getHeight() - getPaddingTop() - getPaddingBottom()) / letters.length;
 
         for (int i = 0; i < letters.length; i++) {
@@ -74,6 +74,9 @@ public class LetterSideBar extends View {
             Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
             int dy = (int) ((fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom);
             int baseLineY = letterCenterY + dy;
+
+            int textWidth = (int) mPaint.measureText(letters[i]);
+            int x = getWidth() / 2 - textWidth / 2;
             canvas.drawText(letters[i], x, baseLineY, mPaint);
         }
     }
